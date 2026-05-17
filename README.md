@@ -102,6 +102,6 @@ python weapon_detection/weapon_detection.py
 - [x] Face recognition with unknown detection
 - [x] Weapon detection
 - [x] Loitering detection with alerts
-- [ ] Email notifications via SMTP
+- [x] Email notifications via SMTP
 - [ ] Flutter mobile app
 - [ ] Raspberry Pi deployment

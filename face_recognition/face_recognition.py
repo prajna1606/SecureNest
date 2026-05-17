@@ -2,6 +2,41 @@ import cv2
 import numpy as np
 import os
 import time
+import smtplib
+from email.message import EmailMessage
+
+def send_email_alert(image_path):
+
+    EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
+    EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
+
+    msg = EmailMessage()
+    msg["Subject"] = "Alert - Unknown Person Detected"
+    msg["From"] = EMAIL_ADDRESS
+    msg["To"] = os.getenv("RECEIVER_EMAIL")
+
+    msg.set_content(
+        "Unknown person detected loitering near your home. "
+        "Attached is the captured image."
+    )
+
+    with open(image_path, "rb") as f:
+        file_data = f.read()
+        file_name = os.path.basename(image_path)
+
+    msg.add_attachment(
+        file_data,
+        maintype="image",
+        subtype="jpeg",
+        filename=file_name
+    )
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        smtp.send_message(msg)
+
+    print("Email sent successfully!")
+
 def distance(v1,v2):
     return np.sqrt(((v1-v2)**2).sum())
 
@@ -67,12 +102,17 @@ while True:
             if unknown_start_time is None:
                 unknown_start_time = time.time()
             elif unknown_detected and time.time() - unknown_start_time > 10 and not alert_triggered:
-                print("alert!!")
+                print("ALERT!! Unknown person loitering detected")
+                image_path = "alert.jpg"
+                cv2.imwrite(image_path, frame)
+                # Send email
+                send_email_alert(image_path)
                 alert_triggered = True
         else:   
             pred_name=names[int(out)]
             unknown_detected = False
             unknown_start_time = None
+            alert_triggered = False
         cv2.putText(frame,pred_name,(x,y-10),font,1,(255,0,0),2,cv2.LINE_AA)
         cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,255),2)
     cv2.imshow("Faces",frame)
