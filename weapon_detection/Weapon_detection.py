@@ -22,7 +22,7 @@ def send_email_alert(image_path, weapon_name):
     EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
     EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
-    RECEIVER_EMAIL = "prajnaasati@gmail.com"
+    RECEIVER_EMAIL = "prajnaasati@example.com"
 
     msg = EmailMessage()
 

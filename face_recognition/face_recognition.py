@@ -13,7 +13,7 @@ def send_email_alert(image_path):
     msg = EmailMessage()
     msg["Subject"] = "Alert - Unknown Person Detected"
     msg["From"] = EMAIL_ADDRESS
-    msg["To"] = os.getenv("RECEIVER_EMAIL")
+    msg["To"] = prajna@example.com
 
     msg.set_content(
         "Unknown person detected loitering near your home. "
