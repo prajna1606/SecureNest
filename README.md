@@ -8,8 +8,7 @@ A real-time AI-powered home security system that combines face recognition, weap
 - **Face Recognition** — Identifies known family members and flags unknown individuals using KNN algorithm trained on custom face data
 - **Weapon Detection** — Detects pistols and knives in real-time using YOLOv8n fine-tuned on 5,000+ images (86.3% mAP50)
 - **Loitering Detection** — Triggers automated alert when an unknown person is present beyond a set duration
-- **Email Alerts** — Sends automated SMTP email notifications to the homeowner on suspicious activity (coming soon)
-- **Mobile App** — Flutter app for live monitoring and remote alerts (coming soon)
+- **Email Alerts** — Sends automated SMTP email notifications to the homeowner on suspicious activity
 
 ---
 
@@ -86,7 +85,6 @@ python weapon_detection/weapon_detection.py
 - NumPy
 - Ultralytics YOLOv8
 - KNN (custom implementation)
-- Flutter (mobile app — coming soon)
 
 ---
 
@@ -103,5 +101,4 @@ python weapon_detection/weapon_detection.py
 - [x] Weapon detection
 - [x] Loitering detection with alerts
 - [x] Email notifications via SMTP
-- [ ] Flutter mobile app
 - [ ] Raspberry Pi deployment
