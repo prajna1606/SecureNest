@@ -4,6 +4,13 @@ A real-time AI-powered home security system that combines face recognition, weap
 
 ---
 
+## Demo
+
+- [Face recognition, loitering detection and email alert](https://youtu.be/5UI8Oxuq75M)
+- [Weapon detection](https://youtu.be/4a5Pwv4oFto)
+
+---
+
 ## Features
 - **Face Recognition** — Identifies known family members and flags unknown individuals using KNN algorithm trained on custom face data
 - **Weapon Detection** — Detects pistols and knives in real-time using YOLOv8n fine-tuned on 5,000+ images (86.3% mAP50)
